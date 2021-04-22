@@ -1,7 +1,12 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { TOGGLE_MOBILE_MENU, wrapper } from '@components/store';
+import { useStore } from '@hooks';
+import { NextPage } from 'next';
+import Head from 'next/head';
+import React from 'react';
+import styles from '../styles/Home.module.css';
 
-export default function Home() {
+const Home: NextPage = () => {
+  const { mobileMenu, toggleMobileMenu } = useStore();
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +22,13 @@ export default function Home() {
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
+        </p>
+
+        <button type="button" onClick={toggleMobileMenu}>
+          Tıkla
+        </button>
+        <p className={styles.description}>
+          State is currently {`${mobileMenu}`}
         </p>
 
         <div className={styles.grid}>
@@ -61,5 +73,12 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
+
+export const getStaticProps = wrapper.getStaticProps(({ store }) => {
+  // console.log('2. Page.getStaticProps uses the store to dispatch things');
+  store.dispatch({ type: TOGGLE_MOBILE_MENU, payload: true });
+});
+
+export default Home;
