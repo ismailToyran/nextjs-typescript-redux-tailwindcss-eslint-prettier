@@ -35,7 +35,7 @@ const Home: NextPage = () => {
             href="https://nextjs.org/docs"
             className="m-4 w-[45%] p-6 border border-[#eaeaea] rounded-[10px] hover:text-[#0070f3] hover:border-[#0070f3] focus:text-[#0070f3] focus:border-[#0070f3] active:text-[#0070f3] active:border-[#0070f3] transition-colors"
           >
-            <h3 className="mb-4 text-base">Documentation &rarr;</h3>
+            <h2 className="mb-4 text-base">Documentation &rarr;</h2>
             <p className="text-xl">Find in-depth information about Next.js features and API.</p>
           </a>
 
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
             href="https://nextjs.org/learn"
             className="m-4 w-[45%] p-6 border border-[#eaeaea] rounded-[10px] hover:text-[#0070f3] hover:border-[#0070f3] focus:text-[#0070f3] focus:border-[#0070f3] active:text-[#0070f3] active:border-[#0070f3] transition-colors"
           >
-            <h3 className="mb-4 text-base">Learn &rarr;</h3>
+            <h2 className="mb-4 text-base">Learn &rarr;</h2>
             <p className="text-xl">Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
             href="https://github.com/vercel/next.js/tree/master/examples"
             className="m-4 w-[45%] p-6 border border-[#eaeaea] rounded-[10px] hover:text-[#0070f3] hover:border-[#0070f3] focus:text-[#0070f3] focus:border-[#0070f3] active:text-[#0070f3] active:border-[#0070f3] transition-colors"
           >
-            <h3 className="mb-4 text-base">Examples &rarr;</h3>
+            <h2 className="mb-4 text-base">Examples &rarr;</h2>
             <p className="text-xl">Discover and deploy boilerplate example Next.js projects.</p>
           </a>
 
@@ -59,7 +59,7 @@ const Home: NextPage = () => {
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className="m-4 w-[45%] p-6 border border-[#eaeaea] rounded-[10px] hover:text-[#0070f3] hover:border-[#0070f3] focus:text-[#0070f3] focus:border-[#0070f3] active:text-[#0070f3] active:border-[#0070f3] transition-colors"
           >
-            <h3 className="mb-4 text-base">Deploy &rarr;</h3>
+            <h2 className="mb-4 text-base">Deploy &rarr;</h2>
             <p className="text-xl">Instantly deploy your Next.js site to a public URL with Vercel.</p>
           </a>
         </div>
