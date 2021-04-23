@@ -7,18 +7,15 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
-    }
+    project: './tsconfig.json'
   },
   rules: {
     'import/no-extraneous-dependencies': 'off',
     'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }]
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'unicorn/prevent-abbreviations': 'off'
   },
-  plugins: ['@typescript-eslint'],
-  extends: ['airbnb-typescript', 'prettier'],
+  plugins: ['@typescript-eslint', 'react-hooks', 'unicorn'],
+  extends: ['airbnb-typescript', 'plugin:react-hooks/recommended', 'plugin:unicorn/recommended', 'prettier'],
   ignorePatterns: ['.eslintrc.js']
 };

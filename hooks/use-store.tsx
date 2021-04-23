@@ -1,12 +1,11 @@
-import { useSelector, useDispatch } from 'react-redux';
-
 import {
-  State,
+  RECEIVE_CAPTCHA_ERROR,
   RECEIVE_CAPTCHA_LOADED,
   RECEIVE_CAPTCHA_VALIDATED,
-  RECEIVE_CAPTCHA_ERROR,
+  State,
   TOGGLE_MOBILE_MENU
 } from '@components/store';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStore = () => {
   const dispatch = useDispatch();
