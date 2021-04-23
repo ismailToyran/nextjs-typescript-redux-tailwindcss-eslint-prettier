@@ -2,7 +2,7 @@
 import { wrapper } from '@components/store';
 import type { AppProps /* , AppContext */ } from 'next/app';
 import React from 'react';
-import 'tailwindcss/tailwind.css';
+import 'styles/globals.css';
 
 const WrappedApp = ({ Component, pageProps }: AppProps) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
