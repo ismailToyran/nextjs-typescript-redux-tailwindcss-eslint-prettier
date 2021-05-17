@@ -1,15 +1,22 @@
-import { TOGGLE_MOBILE_MENU, wrapper } from '@components/store';
+import { getHomepageData, getLanguageData, getSettingsData } from '@components/contentful/api';
+import { IHomepageFields } from '@components/contentful/types/contentful';
+import { RECEIVE_LANGUAGE, RECEIVE_SETTINGS, wrapper } from '@components/store';
 import { useStore } from '@hooks';
-import { NextPage } from 'next';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
 
-const Home: NextPage = () => {
+type Props = {
+  preview: boolean;
+  data: IHomepageFields;
+};
+
+const Home = ({ preview, data }: Props) => {
   const { mobileMenu, toggleMobileMenu } = useStore();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-2">
       <Head>
-        <title>Create Next App</title>
+        <title>{data.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -26,7 +33,7 @@ const Home: NextPage = () => {
         </p>
 
         <button type="button" onClick={toggleMobileMenu}>
-          Tıkla
+          {`${preview}`}
         </button>
         <p className="text-center text-2xl leading-6">State is currently {`${mobileMenu}`}</p>
 
@@ -72,16 +79,23 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
+          Powered by <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" /> {data.title}
         </a>
       </footer>
     </div>
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(({ store }) => {
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async ({ preview = false, locale }) => {
   // console.log('2. Page.getStaticProps uses the store to dispatch things');
-  store.dispatch({ type: TOGGLE_MOBILE_MENU, payload: true });
+  const languageData = await getLanguageData(locale);
+  const settingsData = await getSettingsData(locale);
+  const data = await getHomepageData(locale);
+  store.dispatch({ type: RECEIVE_LANGUAGE, payload: languageData });
+  store.dispatch({ type: RECEIVE_SETTINGS, payload: settingsData });
+  return {
+    props: { preview, data }
+  };
 });
 
 export default Home;

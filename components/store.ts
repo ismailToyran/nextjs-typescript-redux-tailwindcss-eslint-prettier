@@ -1,5 +1,6 @@
-import { createStore, AnyAction, Store } from 'redux';
-import { createWrapper, Context, HYDRATE } from 'next-redux-wrapper';
+import { ILanguageFields, ISettingsFields } from '@components/contentful/types/contentful';
+import { Context, createWrapper, HYDRATE } from 'next-redux-wrapper';
+import { AnyAction, createStore, Store } from 'redux';
 
 export const RECEIVE_LANGUAGE = 'RECEIVE_LANGUAGE';
 export const RECEIVE_SETTINGS = 'RECEIVE_SETTINGS';
@@ -9,8 +10,8 @@ export const RECEIVE_CAPTCHA_ERROR = 'RECEIVE_CAPTCHA_ERROR';
 export const TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU';
 
 export interface State {
-  language: Record<string, unknown>;
-  settings: Record<string, unknown>;
+  language: ILanguageFields | {};
+  settings: ISettingsFields | {};
   captcha: {
     captchaLoaded: boolean;
     captchaValidated: boolean;
@@ -25,9 +26,9 @@ export const initialState = {
   captcha: {
     captchaLoaded: false,
     captchaValidated: false,
-    captchaError: false,
+    captchaError: false
   },
-  mobileMenu: false,
+  mobileMenu: false
 };
 
 // create your reducer
@@ -42,17 +43,17 @@ const reducer = (state: State = initialState, action: AnyAction) => {
     case RECEIVE_CAPTCHA_LOADED:
       return {
         ...state,
-        captcha: { ...state.captcha, captchaLoaded: action.payload },
+        captcha: { ...state.captcha, captchaLoaded: action.payload }
       };
     case RECEIVE_CAPTCHA_VALIDATED:
       return {
         ...state,
-        captcha: { ...state.captcha, captchaValidated: action.payload },
+        captcha: { ...state.captcha, captchaValidated: action.payload }
       };
     case RECEIVE_CAPTCHA_ERROR:
       return {
         ...state,
-        captcha: { ...state.captcha, captchaError: action.payload },
+        captcha: { ...state.captcha, captchaError: action.payload }
       };
     case TOGGLE_MOBILE_MENU:
       return { ...state, mobileMenu: action.payload };
@@ -65,6 +66,6 @@ const reducer = (state: State = initialState, action: AnyAction) => {
 const makeStore = (_context: Context) => createStore(reducer);
 
 // export an assembled wrapper
-export const wrapper = createWrapper<Store<State>>(makeStore as any, {
-//   debug: true,
+export const wrapper = createWrapper<Store<State>>(makeStore, {
+  //   debug: true,
 });

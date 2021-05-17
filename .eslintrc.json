@@ -13,7 +13,11 @@
     "import/no-extraneous-dependencies": "off",
     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
-    "unicorn/prevent-abbreviations": "off"
+    "unicorn/prevent-abbreviations": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false, "classes": true, "variables": false, "typedefs": true }
+    ]
   },
   "plugins": ["@typescript-eslint", "react-hooks", "unicorn"],
   "extends": ["airbnb-typescript", "plugin:react-hooks/recommended", "plugin:unicorn/recommended", "prettier"]
