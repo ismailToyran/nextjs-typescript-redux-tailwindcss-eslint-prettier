@@ -1,15 +1,9 @@
-import {
-  RECEIVE_CAPTCHA_ERROR,
-  RECEIVE_CAPTCHA_LOADED,
-  RECEIVE_CAPTCHA_VALIDATED,
-  State,
-  TOGGLE_MOBILE_MENU
-} from '@components/store';
+import { RECEIVE_CAPTCHA_ERROR, RECEIVE_CAPTCHA_LOADED, RECEIVE_CAPTCHA_VALIDATED, State, TOGGLE_MOBILE_MENU } from '@components/store';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStore = () => {
   const dispatch = useDispatch();
-  const { language, settings, captcha, mobileMenu } = useSelector((state: State) => state);
+  const { language, settings, assets, captcha, mobileMenu, layoutAnimation } = useSelector((state: State) => state);
   const { captchaLoaded, captchaValidated, captchaError } = captcha;
 
   const setCaptchaLoaded = (val: boolean) => dispatch({ type: RECEIVE_CAPTCHA_LOADED, payload: val });
@@ -23,6 +17,7 @@ const useStore = () => {
   return {
     language,
     settings,
+    assets,
     captchaLoaded,
     setCaptchaLoaded,
     captchaValidated,
@@ -32,7 +27,8 @@ const useStore = () => {
     mobileMenu,
     toggleMobileMenu,
     openMobileMenu,
-    closeMobileMenu
+    closeMobileMenu,
+    layoutAnimation
   };
 };
 

@@ -17,6 +17,9 @@ const HomepageQuery = (locale: string | undefined) => `{
       about {
         json
       }
+      deneme {
+        json
+      }
       authorImage {
         title
         url

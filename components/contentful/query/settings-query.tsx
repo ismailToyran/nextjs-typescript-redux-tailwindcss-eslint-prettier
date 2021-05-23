@@ -26,6 +26,17 @@ const SettingsQuery = (locale: string | undefined) => `{
         facebook
       }
       email
+      meta {
+        title
+        description
+        image {
+          title
+          url
+          width
+          height
+        }
+      }
+      author
     }
   }
 }`;

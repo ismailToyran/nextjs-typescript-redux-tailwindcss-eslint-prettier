@@ -1,0 +1,29 @@
+{
+  "name": "ismail Toyran Portfolio",
+  "short_name": "ismailToyran",
+  "description": "ismail Toyran is a Front-End developer based in Turkey who specialized on building modern PWA / commercial websites and mobile applications, now works for remote aswell.",
+  "background_color": "#171f24",
+  "theme_color": "#171f24",
+  "display": "standalone",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [{
+      "src": "/app-icons/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/app-icons/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/app-icons/icons/maskable-icon.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

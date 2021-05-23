@@ -67,6 +67,10 @@ module.exports = {
       zIndex: {
         '-1': '-1'
       },
+      transitionTimingFunction: {
+        'in-hamburger': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+        'out-hamburger': 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+      },
       transitionProperty: {
         hover: 'width padding-top'
       },
@@ -97,6 +101,28 @@ module.exports = {
             transform: 'translateY(0)'
           }
         },
+        'float-dark': {
+          '0%': {
+            filter: 'drop-shadow(0 0 4px rgba(68,157,219,.25))',
+            transform: 'translateY(0)'
+          },
+          '10%': {
+            filter: 'drop-shadow(0 30px 4px rgba(68,157,219,.15))',
+            transform: 'translateY(-8px)'
+          },
+          '50%': {
+            filter: 'drop-shadow(0 20px 4px rgba(68,157,219,.2))',
+            transform: 'translateY(-4px)'
+          },
+          '90%': {
+            filter: 'drop-shadow(0 30px 4px rgba(68,157,219,.15))',
+            transform: 'translateY(-8px)'
+          },
+          '100%': {
+            filter: 'drop-shadow(0 0 4px rgba(68,157,219,.25))',
+            transform: 'translateY(0)'
+          }
+        },
         pulse1: {
           '0%': { opacity: 0.3 },
           '15%': { opacity: 0 },
@@ -113,13 +139,49 @@ module.exports = {
           '0%': { opacity: 1 },
           '50%': { opacity: 0 },
           '100%': { opacity: 1 }
+        },
+        pulse3: {
+          '0%': { opacity: 1 },
+          '50%': { opacity: 0 },
+          '100%': { opacity: 1 }
+        },
+        text1: {
+          '0%': { opacity: 1 },
+          '16.667%': { opacity: 1 },
+          '33.333%': { opacity: 0 },
+          '83.333%': { opacity: 0 },
+          '100%': { opacity: 1 }
+        },
+        // text1: {
+        //   '0%': { opacity: 0 },
+        //   '33%': { opacity: 1 },
+        //   '100%': { opacity: 0 }
+        // },
+        text2: {
+          '0%': { opacity: 0 },
+          '16.667%': { opacity: 0 },
+          '33.333%': { opacity: 1 },
+          '50%': { opacity: 1 },
+          '66.667%': { opacity: 0 },
+          '100%': { opacity: 0 }
+        },
+        text3: {
+          '0%': { opacity: 0 },
+          '50%': { opacity: 0 },
+          '66.667%': { opacity: 1 },
+          '83.333%': { opacity: 1 },
+          '100%': { opacity: 0 }
         }
       },
       animation: {
         float: 'float 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite',
+        'float-dark': 'float-dark 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite',
         pulse1: 'pulse1 2s linear infinite',
         pulse2: 'pulse2 2s linear infinite',
-        pulse3: 'pulse3 2s linear infinite'
+        pulse3: 'pulse3 2s linear infinite',
+        text1: 'text1 8s ease infinite',
+        text2: 'text2 8s ease infinite',
+        text3: 'text3 8s ease infinite'
       }
     },
     boxShadow: {
@@ -137,5 +199,5 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: []
+  plugins: [require('tailwindcss-pseudo-elements')]
 };

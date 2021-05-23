@@ -1,5 +1,5 @@
-import { HomepageQuery, LanguageQuery, SettingsQuery } from '@components/contentful/query';
-import { IHomepageFields, ILanguageFields, ISettingsFields } from '@components/contentful/types/contentful';
+import { AssetsQuery, Custom404Query, HomepageQuery, LanguageQuery, SettingsQuery } from '@components/contentful/query';
+import { IAssets, ICustom404Fields, IHomepageFields, ILanguageFields, ISettingsFields } from '@components/contentful/types/contentful';
 
 const space = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
@@ -21,6 +21,18 @@ const fetchContent = async (query: any) => {
   }
 };
 
+const getAssetsData = async () => {
+  const { assetCollection } = await fetchContent(AssetsQuery());
+  const data: IAssets[] = assetCollection.items || [];
+  return data;
+};
+
+const getCustom404Data = async (locale: string | undefined) => {
+  const { custom404Collection } = await fetchContent(Custom404Query(locale));
+  const data: ICustom404Fields = custom404Collection.items[0] || [];
+  return data;
+};
+
 const getHomepageData = async (locale: string | undefined) => {
   const { homepageCollection } = await fetchContent(HomepageQuery(locale));
   const data: IHomepageFields = homepageCollection.items[0] || {};
@@ -39,4 +51,4 @@ const getSettingsData = async (locale: string | undefined) => {
   return data;
 };
 
-export { getHomepageData, getLanguageData, getSettingsData };
+export { getAssetsData, getCustom404Data, getHomepageData, getLanguageData, getSettingsData };
