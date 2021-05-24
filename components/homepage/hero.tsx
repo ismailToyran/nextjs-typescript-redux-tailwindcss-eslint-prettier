@@ -1,5 +1,6 @@
 import ScrollDown from '@components/scroll-down';
 import { useStore } from '@hooks';
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -83,12 +84,17 @@ const Hero = ({ data }: HeroProps) => {
   const { titleFirst, titleSecond } = language;
 
   return (
-    <div className="flex flex-col justify-center min-h-screen hero">
-      <h1 className="overflow-hidden font-bold leading-tight text-light-text-primary-color dark:text-dark-text-primary-color text-8xl">
+    <div className="relative flex flex-col justify-center h-full min-h-screen">
+      <h1
+        className={clsx(
+          'mt-auto overflow-hidden font-bold leading-tight text-light-text-primary-color dark:text-dark-text-primary-color',
+          'text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl'
+        )}
+      >
         <motion.span className="block p-4" variants={highlight} custom="left" initial="hidden" animate="visible" exit="exit">
           {titleFirst}{' '}
         </motion.span>
-        <div className="relative flex justify-center -mt-2 py-[10vh]">
+        <div className="relative flex justify-center -mt-2 py-[5vh] md:py-[10vh]">
           {data.map((keyword, index) => (
             <motion.div
               className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
@@ -101,7 +107,7 @@ const Hero = ({ data }: HeroProps) => {
             >
               {keyword.split('').map((char, ind) => (
                 <motion.span
-                  className="font-bold w-min text-9xl text-bg"
+                  className="text-4xl w-min text-bg sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl"
                   style={{ backgroundImage: backgroundImage[index] }}
                   key={`${data[index] + locale + char + ind}`}
                   variants={letter}
