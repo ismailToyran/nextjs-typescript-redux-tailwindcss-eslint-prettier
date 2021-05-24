@@ -9,7 +9,6 @@ export const RECEIVE_CAPTCHA_LOADED = 'RECEIVE_CAPTCHA_LOADED';
 export const RECEIVE_CAPTCHA_VALIDATED = 'RECEIVE_CAPTCHA_VALIDATED';
 export const RECEIVE_CAPTCHA_ERROR = 'RECEIVE_CAPTCHA_ERROR';
 export const TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU';
-export const SET_LAYOUT_ANIMATION = 'SET_LAYOUT_ANIMATION';
 
 export interface State {
   language: ILanguageFields;
@@ -21,7 +20,6 @@ export interface State {
     captchaError: boolean;
   };
   mobileMenu: boolean;
-  layoutAnimation: boolean;
 }
 
 export const initialState: State = {
@@ -33,8 +31,7 @@ export const initialState: State = {
     captchaValidated: false,
     captchaError: false
   },
-  mobileMenu: false,
-  layoutAnimation: false
+  mobileMenu: false
 };
 
 // create your reducer
@@ -65,8 +62,6 @@ const reducer = (state = initialState, action: AnyAction) => {
       };
     case TOGGLE_MOBILE_MENU:
       return { ...state, mobileMenu: action.payload };
-    case SET_LAYOUT_ANIMATION:
-      return { ...state, layoutAnimation: action.payload };
     default:
       return state;
   }

@@ -1,46 +1,27 @@
 // import App from "next/app";
-import { SET_LAYOUT_ANIMATION, wrapper } from '@components/store';
+import { wrapper } from '@components/store';
+import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from 'next-themes';
 // eslint-disable-next-line import/order
 import type { AppProps } from 'next/app';
-import { Router } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import React from 'react';
 import 'styles/globals.css';
 import 'styles/icomoon.css';
 
 const WrappedApp = ({ Component, pageProps }: AppProps) => {
-  const dispatch = useDispatch();
-  const [mounted, setMounted] = useState<boolean>(false);
-
-  useEffect(() => {
-    const setLayoutAnimation = (val: boolean) => dispatch({ type: SET_LAYOUT_ANIMATION, payload: val });
-    Router.events.on('routeChangeStart', () => setLayoutAnimation(false));
-    Router.events.on('routeChangeComplete', () => setLayoutAnimation(true));
-    return () => {
-      Router.events.off('routeChangeStart', () => setLayoutAnimation(false));
-      Router.events.off('routeChangeComplete', () => setLayoutAnimation(true));
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    const setLayoutAnimation = (val: boolean) => dispatch({ type: SET_LAYOUT_ANIMATION, payload: val });
-    setLayoutAnimation(true);
-  }, [dispatch]);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { locale, pathname } = useRouter();
 
   return (
-    mounted && (
-      <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
+    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
+      <AnimatePresence exitBeforeEnter>
         <Component
+          key={`/${locale}${pathname}`}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...pageProps}
         />
-      </ThemeProvider>
-    )
+      </AnimatePresence>
+    </ThemeProvider>
   );
 };
 

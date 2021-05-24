@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const useStore = () => {
   const dispatch = useDispatch();
-  const { language, settings, assets, captcha, mobileMenu, layoutAnimation } = useSelector((state: State) => state);
+  const { language, settings, assets, captcha, mobileMenu } = useSelector((state: State) => state);
   const { captchaLoaded, captchaValidated, captchaError } = captcha;
 
   const setCaptchaLoaded = (val: boolean) => dispatch({ type: RECEIVE_CAPTCHA_LOADED, payload: val });
@@ -27,8 +27,7 @@ const useStore = () => {
     mobileMenu,
     toggleMobileMenu,
     openMobileMenu,
-    closeMobileMenu,
-    layoutAnimation
+    closeMobileMenu
   };
 };
 

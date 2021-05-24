@@ -19,7 +19,13 @@ const sentence = {
       staggerChildren: 0.08,
       delayChildren: 3 + index * 4
     }
-  })
+  }),
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 1
+    }
+  }
 };
 
 const letter = {
@@ -30,11 +36,17 @@ const letter = {
     y: 0,
     opacity: [0, 1, 1, 0],
     transition: {
-      type: 'spring',
+      ease: [0.175, 0.85, 0.42, 0.96],
       duration: 4,
       repeat: Number.POSITIVE_INFINITY,
       repeatDelay: 8,
       times: [0, 0.2, 0.8, 1]
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 1
     }
   }
 };
@@ -42,7 +54,11 @@ const letter = {
 const highlight = {
   hidden: (direction: string) => ({
     opacity: 0,
-    x: direction === 'left' ? 320 : -320
+    x: direction === 'left' ? 320 : -320,
+    transition: {
+      duration: 1,
+      ease: [0.175, 0.85, 0.42, 0.96]
+    }
   }),
   visible: {
     opacity: 1,
@@ -50,7 +66,7 @@ const highlight = {
     transition: {
       delay: 2,
       duration: 1,
-      type: 'spring'
+      ease: [0.175, 0.85, 0.42, 0.96]
     }
   }
 };
@@ -58,14 +74,14 @@ const highlight = {
 const backgroundImage = ['linear-gradient(90deg,#FF4D4D,#F9CB28)', 'linear-gradient(90deg,#7928CA,#FF0080)', 'linear-gradient(90deg,#00DFD8,#00F260)'];
 
 const Hero = ({ data }: HeroProps) => {
-  const { language, layoutAnimation } = useStore();
+  const { language } = useStore();
   const { locale } = useRouter();
   const { titleFirst, titleSecond } = language;
 
   return (
     <div className="flex flex-col justify-center min-h-screen hero">
       <h1 className="overflow-hidden font-bold leading-tight text-light-text-primary-color dark:text-dark-text-primary-color text-8xl">
-        <motion.span className="block p-4" variants={highlight} custom="left" initial="hidden" animate={layoutAnimation ? 'visible' : 'hidden'}>
+        <motion.span className="block p-4" variants={highlight} custom="left" initial="hidden" animate="visible" exit="hidden">
           {titleFirst}{' '}
         </motion.span>
         <div className="relative flex justify-center -mt-2 py-[10vh]">
@@ -75,7 +91,8 @@ const Hero = ({ data }: HeroProps) => {
               variants={sentence}
               custom={index}
               initial="hidden"
-              animate={layoutAnimation ? 'visible' : 'hidden'}
+              animate="visible"
+              exit="exit"
               key={keyword}
             >
               {keyword.split('').map((char, ind) => (
@@ -91,7 +108,7 @@ const Hero = ({ data }: HeroProps) => {
             </motion.div>
           ))}
         </div>
-        <motion.span className="block p-4 text-right" variants={highlight} custom="right" initial="hidden" animate={layoutAnimation ? 'visible' : 'hidden'}>
+        <motion.span className="block p-4 text-right" variants={highlight} custom="right" initial="hidden" animate="visible" exit="hidden">
           {' '}
           {titleSecond}
         </motion.span>
