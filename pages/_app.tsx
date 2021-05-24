@@ -4,13 +4,14 @@ import { ThemeProvider } from 'next-themes';
 // eslint-disable-next-line import/order
 import type { AppProps } from 'next/app';
 import { Router } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import 'styles/globals.css';
 import 'styles/icomoon.css';
 
 const WrappedApp = ({ Component, pageProps }: AppProps) => {
   const dispatch = useDispatch();
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     const setLayoutAnimation = (val: boolean) => dispatch({ type: SET_LAYOUT_ANIMATION, payload: val });
@@ -27,13 +28,19 @@ const WrappedApp = ({ Component, pageProps }: AppProps) => {
     setLayoutAnimation(true);
   }, [dispatch]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
-      <Component
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...pageProps}
-      />
-    </ThemeProvider>
+    mounted && (
+      <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
+        <Component
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...pageProps}
+        />
+      </ThemeProvider>
+    )
   );
 };
 

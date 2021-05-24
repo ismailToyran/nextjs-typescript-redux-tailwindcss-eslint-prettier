@@ -152,11 +152,6 @@ module.exports = {
           '83.333%': { opacity: 0 },
           '100%': { opacity: 1 }
         },
-        // text1: {
-        //   '0%': { opacity: 0 },
-        //   '33%': { opacity: 1 },
-        //   '100%': { opacity: 0 }
-        // },
         text2: {
           '0%': { opacity: 0 },
           '16.667%': { opacity: 0 },
