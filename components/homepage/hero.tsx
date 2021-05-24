@@ -36,7 +36,7 @@ const letter = {
     y: 0,
     opacity: [0, 1, 1, 0],
     transition: {
-      ease: [0.175, 0.85, 0.42, 0.96],
+      ease: 'easeOut',
       duration: 4,
       repeat: Number.POSITIVE_INFINITY,
       repeatDelay: 8,
@@ -54,11 +54,7 @@ const letter = {
 const highlight = {
   hidden: (direction: string) => ({
     opacity: 0,
-    x: direction === 'left' ? 320 : -320,
-    transition: {
-      duration: 1,
-      ease: [0.175, 0.85, 0.42, 0.96]
-    }
+    x: direction === 'left' ? '50%' : '-50%'
   }),
   visible: {
     opacity: 1,
@@ -66,9 +62,17 @@ const highlight = {
     transition: {
       delay: 2,
       duration: 1,
-      ease: [0.175, 0.85, 0.42, 0.96]
+      ease: 'easeOut'
     }
-  }
+  },
+  exit: (direction: string) => ({
+    opacity: 0,
+    x: direction === 'left' ? '50%' : '-50%',
+    transition: {
+      duration: 1,
+      ease: 'easeOut'
+    }
+  })
 };
 
 const backgroundImage = ['linear-gradient(90deg,#FF4D4D,#F9CB28)', 'linear-gradient(90deg,#7928CA,#FF0080)', 'linear-gradient(90deg,#00DFD8,#00F260)'];
@@ -81,7 +85,7 @@ const Hero = ({ data }: HeroProps) => {
   return (
     <div className="flex flex-col justify-center min-h-screen hero">
       <h1 className="overflow-hidden font-bold leading-tight text-light-text-primary-color dark:text-dark-text-primary-color text-8xl">
-        <motion.span className="block p-4" variants={highlight} custom="left" initial="hidden" animate="visible" exit="hidden">
+        <motion.span className="block p-4" variants={highlight} custom="left" initial="hidden" animate="visible" exit="exit">
           {titleFirst}{' '}
         </motion.span>
         <div className="relative flex justify-center -mt-2 py-[10vh]">
@@ -108,7 +112,7 @@ const Hero = ({ data }: HeroProps) => {
             </motion.div>
           ))}
         </div>
-        <motion.span className="block p-4 text-right" variants={highlight} custom="right" initial="hidden" animate="visible" exit="hidden">
+        <motion.span className="block p-4 text-right" variants={highlight} custom="right" initial="hidden" animate="visible" exit="exit">
           {' '}
           {titleSecond}
         </motion.span>

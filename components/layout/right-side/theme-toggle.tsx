@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import React from 'react';
 
@@ -6,11 +7,32 @@ type ThemeToggleProps = {
   rotate?: boolean;
 };
 
+const motionTheme = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      ease: 'easeOut',
+      delay: 1.5,
+      duration: 0.5
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      ease: 'easeOut',
+      duration: 0.5
+    }
+  }
+};
+
 const ThemeToggle = ({ rotate }: ThemeToggleProps) => {
   const { theme, setTheme } = useTheme();
   const lightTheme = theme === 'light';
   return (
-    <div className={clsx('theme flex items-center md:mb-5 opacity-100 md:opacity-0', { 'flex-col': rotate })}>
+    <motion.div className={clsx('flex items-center md:mb-5 opacity-100', { 'flex-col': rotate })} variants={motionTheme} initial="hidden" animate="visible" exit="exit">
       <button
         aria-label="Select Light Mode"
         className="p-2 text-xl icon-sun text-light-text-primary dark:text-dark-text-disabled-color"
@@ -41,7 +63,7 @@ const ThemeToggle = ({ rotate }: ThemeToggleProps) => {
         onClick={() => setTheme('dark')}
         type="button"
       />
-    </div>
+    </motion.div>
   );
 };
 

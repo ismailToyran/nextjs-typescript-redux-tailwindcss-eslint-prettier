@@ -4,12 +4,34 @@ import LangSwitch from '@layout/header/lang-switch';
 import Logo from '@layout/header/logo';
 import Navigation from '@layout/header/navigation';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import React from 'react';
 
 type HeaderProps = {
   scrollUp: boolean;
   atTop: boolean;
   atBottom: boolean;
+};
+
+const motionNavigation = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      ease: 'easeOut',
+      delay: 0.5,
+      duration: 0.5
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      ease: 'easeOut',
+      duration: 0.5
+    }
+  }
 };
 
 const Header = ({ scrollUp, atTop, atBottom }: HeaderProps) => {
@@ -26,11 +48,11 @@ const Header = ({ scrollUp, atTop, atBottom }: HeaderProps) => {
         { 'filter blur-sm brightness-75': mobileMenu }
       )}
     >
-      <nav className="flex items-center w-full h-full navigation">
+      <motion.nav className="flex items-center w-full h-full" variants={motionNavigation} initial="hidden" animate="visible" exit="exit">
         <Logo />
         <Navigation />
         <LangSwitch scrollUp={scrollUp} atTop={atTop} />
-      </nav>
+      </motion.nav>
       <HeaderLine />
     </header>
   );
