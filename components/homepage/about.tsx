@@ -89,7 +89,7 @@ const About = ({ richText, authorImage }: AboutProps) => {
           <RichText json={richText.json} />
         </motion.div>
         <motion.div
-          className="relative flex w-4/5 max-w-sm mx-auto mb-6 cursor-pointer author-image lg-w-auto lg:h-96 lg:mx-0 lg:mb-8"
+          className="relative flex mx-auto mb-6 overflow-hidden cursor-pointer w-80 xl:w-96 h-80 xl:h-96 lg:mx-0 lg:mb-8"
           ref={imageRef}
           variants={motionImage}
           initial="hidden"
@@ -97,7 +97,7 @@ const About = ({ richText, authorImage }: AboutProps) => {
           exit="exit"
         >
           <div className="absolute inset-0 z-10 transition-all rounded-md backdrop-filter backdrop-grayscale hover:backdrop-grayscale-0 bg-dark-text-secondary-color bg-opacity-30 hover:bg-opacity-0" />
-          <Image data={authorImage} />
+          <Image data={authorImage} layout="fill" objectFit="contain" />
         </motion.div>
       </div>
     </Section>

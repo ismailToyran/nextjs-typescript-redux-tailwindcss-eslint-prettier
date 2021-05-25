@@ -3,23 +3,53 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
 
-type ImageProps = {
+type CommonImageProps = {
   data: IImage;
   className?: string | undefined;
-  fixedWidth?: number | undefined;
-  fixedHeight?: number | undefined;
+  layout?: 'intrinsic' | 'fixed' | 'responsive' | 'fill';
 };
 
-const ImageContentful = ({ data, className, fixedWidth, fixedHeight }: ImageProps) => {
+type ConditionalImageProps =
+  | {
+      layout: 'intrinsic' | 'fixed' | 'responsive';
+      objectFit: undefined;
+      objectPosition: undefined;
+    }
+  | {
+      layout: 'fill';
+      objectFit?: 'contain' | 'cover' | 'none';
+      objectPosition?: 'left' | 'center' | 'right';
+    };
+
+type ImageContentfulProps = CommonImageProps & ConditionalImageProps;
+
+const ImageContentful = ({ data, className, layout, objectFit, objectPosition }: ImageContentfulProps) => {
   const { url, title, width, height } = data;
+
+  if (layout === 'fill') {
+    return (
+      <Image
+        src={url}
+        alt={title}
+        key={title}
+        layout="fill"
+        objectFit={objectFit || 'contain'}
+        objectPosition={objectPosition || 'center'}
+        className={clsx('image rounded-md', { className })}
+        // draggable="false"
+        // onContextMenu={e => e.preventDefault()}
+      />
+    );
+  }
 
   return (
     <Image
       src={url}
       alt={title}
-      width={fixedWidth || width}
-      height={fixedHeight || height}
+      width={width}
+      height={height}
       key={title}
+      layout={layout}
       className={clsx('image rounded-md', { className })}
       // draggable="false"
       // onContextMenu={e => e.preventDefault()}
@@ -29,8 +59,7 @@ const ImageContentful = ({ data, className, fixedWidth, fixedHeight }: ImageProp
 
 ImageContentful.defaultProps = {
   className: undefined,
-  fixedWidth: undefined,
-  fixedHeight: undefined
+  layout: 'intrinsic'
 };
 
 export default ImageContentful;

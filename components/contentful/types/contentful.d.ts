@@ -47,7 +47,9 @@ export type IHomepageFields = {
   authorImage: IImage;
 
   /** Project List */
-  projectList: IProjectFields[];
+  projectListCollection: {
+    items: IProjectFields[];
+  };
 };
 
 export type ICustom404Fields = {

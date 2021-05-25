@@ -2,6 +2,7 @@ import { getAssetsData, getHomepageData, getLanguageData, getSettingsData } from
 import { IHomepageFields } from '@components/contentful/types/contentful';
 import About from '@components/homepage/about';
 import Hero from '@components/homepage/hero';
+import Projects from '@components/homepage/projects';
 import Layout from '@components/layout';
 import RichText from '@components/rich-text';
 import { RECEIVE_ASSETS, RECEIVE_LANGUAGE, RECEIVE_SETTINGS, wrapper } from '@components/store';
@@ -16,11 +17,12 @@ type HomepageProps = {
 
 const Homepage = ({ preview, data }: HomepageProps) => {
   const { mobileMenu, toggleMobileMenu } = useStore();
-  const { meta, title, heroKeywords, deneme, about, authorImage } = data;
+  const { meta, title, heroKeywords, deneme, about, authorImage, projectListCollection } = data;
   return (
     <Layout meta={meta}>
       <Hero data={heroKeywords} />
       <About richText={about} authorImage={authorImage} />
+      <Projects data={projectListCollection.items} />
       <div className="flex flex-col items-center justify-center min-h-screen px-2">
         <main className="flex flex-col items-center justify-center flex-1 py-20">
           <h1 className="text-[4rem] leading-[1.15] text-center">
