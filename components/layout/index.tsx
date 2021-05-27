@@ -6,8 +6,8 @@ import Head from '@components/layout/head';
 import Header from '@components/layout/header';
 import LeftSide from '@components/layout/left-side';
 import RightSide from '@components/layout/right-side';
+import Toast from '@components/layout/toast';
 import { useScrollDirection } from '@hooks';
-// import Toast from '@components/toast';
 import MobileMenu from '@layout/mobile-menu';
 import React, { ReactNode, useEffect, useState } from 'react';
 
@@ -42,7 +42,7 @@ const Layout = ({ meta, children }: LayoutProps) => {
       <Container>{children}</Container>
       <Footer scrollUp={scrollUp} atTop={scrolledToTop} atBottom={scrolledToBottom} />
       <RightSide />
-      {/* <Toast /> */}
+      <Toast />
     </div>
   );
 };

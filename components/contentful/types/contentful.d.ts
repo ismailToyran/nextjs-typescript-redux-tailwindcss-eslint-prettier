@@ -40,9 +40,6 @@ export type IHomepageFields = {
   /** About */
   about: IRichText;
 
-  /** About */
-  deneme: IRichText;
-
   /** Author Image */
   authorImage: IImage;
 

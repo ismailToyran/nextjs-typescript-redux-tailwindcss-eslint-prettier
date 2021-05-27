@@ -35,7 +35,7 @@ const ImageContentful = ({ data, className, layout, objectFit, objectPosition }:
         layout="fill"
         objectFit={objectFit || 'contain'}
         objectPosition={objectPosition || 'center'}
-        className={clsx('image rounded-md', { className })}
+        className={clsx('image rounded-md', className)}
         // draggable="false"
         // onContextMenu={e => e.preventDefault()}
       />
@@ -50,7 +50,7 @@ const ImageContentful = ({ data, className, layout, objectFit, objectPosition }:
       height={height}
       key={title}
       layout={layout}
-      className={clsx('image rounded-md', { className })}
+      className={clsx('image rounded-md', className)}
       // draggable="false"
       // onContextMenu={e => e.preventDefault()}
     />

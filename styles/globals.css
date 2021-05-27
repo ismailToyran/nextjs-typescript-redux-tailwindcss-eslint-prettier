@@ -5,6 +5,15 @@ button:focus {
   outline: none;
 }
 
+.floating-input input:focus-within ~ label,
+.floating-input input:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 left-3 -translate-y-8 z-0 px-1.5;
+}
+
+input:focus-within ~ label {
+  @apply text-dark-text-primary-color !important;
+}
+
 @tailwind utilities;
 
 @layer utilities {
