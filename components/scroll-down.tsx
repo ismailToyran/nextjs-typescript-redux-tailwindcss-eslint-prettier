@@ -43,7 +43,7 @@ const ScrollDown = ({ onClick }: ScrollDownProps) => {
 
   return (
     <motion.div
-      className="z-50 flex h-16 mx-auto mt-auto mb-8 cursor-pointer fill-current text-light-text-primary-color dark:text-dark-text-primary-color md:mb-24 lg:mb-8"
+      className="z-50 flex h-16 mx-auto mt-auto mb-16 cursor-pointer fill-current text-light-text-primary-color dark:text-dark-text-primary-color md:mb-24 lg:mb-8"
       onClick={onClick}
       variants={motionScrollDown}
       initial="hidden"

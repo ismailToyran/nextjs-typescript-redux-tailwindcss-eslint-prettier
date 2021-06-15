@@ -6,7 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React from 'react';
-import 'styles/globals.css';
+import 'styles/global.css';
 import 'styles/icomoon.css';
 
 const WrappedApp = ({ Component, pageProps }: AppProps) => {

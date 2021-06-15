@@ -24,7 +24,7 @@ const motionLine = {
 
 const FooterLine = () => (
   <motion.div
-    className="hidden h-px md:block w-line-sm xl:w-line-xl lg:w-line-lg md:w-line-md bg-light-text-primary dark:bg-dark-text-primary"
+    className="hidden h-px md:block xl:w-line-xl lg:w-line-lg md:w-line-md bg-light-text-primary dark:bg-dark-text-primary"
     variants={motionLine}
     initial="hidden"
     animate="visible"

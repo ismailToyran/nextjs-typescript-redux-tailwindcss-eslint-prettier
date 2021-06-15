@@ -14,27 +14,24 @@ const motionProjectCard = {
   hidden: (index: number) => ({
     x: index % 2 === 0 ? 200 : -200,
     y: 200,
-    scale: 0.9,
     opacity: 0
   }),
   visible: {
     x: 0,
     y: 0,
-    scale: 1,
     opacity: 1,
     transition: {
       ease: 'easeOut',
-      duration: 1
+      duration: 0.7
     }
   },
   exit: (index: number) => ({
     x: index % 2 === 0 ? 200 : -200,
     y: 200,
-    scale: 0.9,
     opacity: 0,
     transition: {
       ease: 'easeOut',
-      duration: 1
+      duration: 0.7
     }
   })
 };
@@ -82,7 +79,7 @@ const ProjectCard = ({ data, index }: ProjectCardProps) => {
           )}
         >
           <h3 className="text-xl font-medium leading-tight text-light-text-primary-color dark:text-dark-text-primary-color md:text-2xl lg:text-3xl xl:text-4xl">{title}</h3>
-          <a className="flex mt-3 pointer-events-auto" href={link} target="_blank" rel="noopener noreferrer">
+          <a className="flex mt-3 pointer-events-auto" aria-label={`${title} Link`} href={link} target="_blank" rel="noopener noreferrer">
             <i className="text-xl transition transform icon-external-link text-light-text-primary dark:text-dark-text-primary dark:hover:text-dark-text-primary-color hover:scale-125" />
           </a>
         </div>

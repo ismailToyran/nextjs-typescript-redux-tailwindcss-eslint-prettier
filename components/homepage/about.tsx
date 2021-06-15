@@ -14,25 +14,22 @@ type AboutProps = {
 const motionJson = {
   hidden: {
     y: 200,
-    scale: 0.9,
     opacity: 0
   },
   visible: {
     y: 0,
-    scale: 1,
     opacity: 1,
     transition: {
       ease: 'easeOut',
-      duration: 1
+      duration: 0.7
     }
   },
   exit: {
     y: 200,
-    scale: 0.9,
     opacity: 0,
     transition: {
       ease: 'easeOut',
-      duration: 1
+      duration: 0.7
     }
   }
 };
@@ -40,25 +37,22 @@ const motionJson = {
 const motionImage = {
   hidden: {
     x: 200,
-    scale: 0.9,
     opacity: 0
   },
   visible: {
     x: 0,
-    scale: 1,
     opacity: 1,
     transition: {
       ease: 'easeOut',
-      duration: 1
+      duration: 0.7
     }
   },
   exit: {
     x: 200,
-    scale: 0.9,
     opacity: 0,
     transition: {
       ease: 'easeOut',
-      duration: 1
+      duration: 0.7
     }
   }
 };
@@ -97,7 +91,7 @@ const About = ({ richText, authorImage }: AboutProps) => {
           exit="exit"
         >
           <div className="absolute inset-0 z-10 transition-all rounded-md backdrop-filter backdrop-grayscale hover:backdrop-grayscale-0 bg-dark-text-secondary-color bg-opacity-30 hover:bg-opacity-0" />
-          <Image data={authorImage} layout="fill" objectFit="contain" />
+          <Image data={authorImage} layout="fill" />
         </motion.div>
       </div>
     </Section>
