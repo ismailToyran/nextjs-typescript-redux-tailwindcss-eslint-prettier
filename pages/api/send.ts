@@ -17,9 +17,7 @@ const Send = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await SendGrid.send(content);
     res.status(200).send('Message sent successfully.');
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('ERROR', error);
+  } catch (error: any) {
     res.status(400).send('Message not sent.');
     if (error.response) {
       // eslint-disable-next-line no-console
